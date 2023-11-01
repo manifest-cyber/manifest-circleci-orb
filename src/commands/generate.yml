@@ -32,6 +32,22 @@ parameters:
     type: boolean
     description: "publish the SBOM to the Manifest platform"
     default: true
+  api_key:
+    type: string
+    description: "set the API key to use for publishing"
+    default: ""
+  attest:
+    type: boolean
+    description: "set whether or not to attest the SBOM"
+    default: false
+  attest_private_key:
+    type: string
+    description: "set the private key to use for attestation"
+    default: ""
+  hierarchical_merge:
+    type: boolean
+    description: "set whether or not to merge the SBOMs hierarchically"
+    default: false
 steps:
   - run:
       environment:
@@ -43,5 +59,9 @@ steps:
         MANIFEST_GENERATOR: <<parameters.generator>>
         MANIFEST_ARGS: <<parameters.args>>
         MANIFEST_PUBLISH: <<parameters.publish>>
+        MANIFEST_API_KEY: <<parameters.api_key>>
+        MANIFEST_ATTEST: <<parameters.attest>>
+        MANIFEST_ATTEST_PRIVATE_KEY: <<parameters.attest_private_key>>
+        MANIFEST_HIERARCHICAL_MERGE: <<parameters.hierarchical_merge>>
       name: Generate SBOM
       command: <<include(scripts/generate.sh)>>
