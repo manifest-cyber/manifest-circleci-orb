@@ -35,7 +35,6 @@ jobs:
       - sbom/install:
           version: v0.10.0
           generator: cdxgen
-          generator_version: v0.92.0
       - sbom/generate:
           generator: cdxgen
           source: .
