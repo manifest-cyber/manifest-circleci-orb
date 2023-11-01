@@ -51,5 +51,4 @@ usage:
             format: cyclonedx-json
             source_name: node
             source_version: 14.17.0
-            args: --spec-version 1.4
 ```
