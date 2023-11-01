@@ -27,6 +27,7 @@ jobs:
           source: .
           source_name: circleci_test
           source_version: 1.0.0
+          label: test,circleci,orb
 
 workflows:
   test-deploy:
