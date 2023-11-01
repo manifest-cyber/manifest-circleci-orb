@@ -13,6 +13,7 @@ attest_key=$(circleci env subst "${MANIFEST_ATTEST_PRIVATE_KEY}")
 hierarchical=$(circleci env subst "${MANIFEST_HIERARCHICAL_MERGE}")
 
 sources=${sources//,/}
+tptargs=$(echo "${ptargs}" | awk '{$1=$1};1')
 
 # This is required for publishing
 MANFEST_API_KEY=${MANFEST_API_KEY:$(circleci env subst "${MANIFEST_PUBLISH_API_KEY}")}
