@@ -1,5 +1,8 @@
 description: >
   Generates an SBOM on any number of targets (paths to source code, containers, etc.)
+  and optionally publishes it to the Manifest platform.
+
+  Generate an API Key in your Manifest account and set it as the MANIFEST_API_KEY environment variable in your CircleCI project settings.
 parameters:
   source:
     type: string
@@ -24,6 +27,10 @@ parameters:
     type: string
     description: "set the generator to use"
     default: ""
+  labels:
+    type: string
+    description: "set the labels to apply to the SBOM, comma separated"
+    default: ""
   args:
     type: string
     description: "set the arguments to pass to the generator"
@@ -32,6 +39,22 @@ parameters:
     type: boolean
     description: "publish the SBOM to the Manifest platform"
     default: true
+  api_key:
+    type: string
+    description: "set the API key to use for publishing, if not set will use the MANIFEST_API_KEY environment variable"
+    default: ""
+  attest:
+    type: boolean
+    description: "set whether or not to attest the SBOM"
+    default: false
+  attest_private_key:
+    type: string
+    description: "set the private key to use for attestation"
+    default: ""
+  hierarchical_merge:
+    type: boolean
+    description: "set whether or not to merge the SBOMs hierarchically"
+    default: false
 steps:
   - run:
       environment:
@@ -41,7 +64,12 @@ steps:
         MANIFEST_SOURCE_NAME: <<parameters.source_name>>
         MANIFEST_SOURCE_VERSION: <<parameters.source_version>>
         MANIFEST_GENERATOR: <<parameters.generator>>
+        MANIFEST_LABELS: <<parameters.labels>>
         MANIFEST_ARGS: <<parameters.args>>
         MANIFEST_PUBLISH: <<parameters.publish>>
+        MANIFEST_PUBLISH_API_KEY: <<parameters.api_key>>
+        MANIFEST_ATTEST: <<parameters.attest>>
+        MANIFEST_ATTEST_PRIVATE_KEY: <<parameters.attest_private_key>>
+        MANIFEST_HIERARCHICAL_MERGE: <<parameters.hierarchical_merge>>
       name: Generate SBOM
       command: <<include(scripts/generate.sh)>>

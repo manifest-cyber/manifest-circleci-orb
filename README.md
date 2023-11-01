@@ -5,7 +5,7 @@
 
 --->
 
-This orb is used to send an SBOM to your Manifest Cyber account.
+This orb is used to generate an SBOM and publish to your Manifest account.
 
 ---
 
