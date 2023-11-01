@@ -1,5 +1,8 @@
 description: >
   Generates an SBOM on any number of targets (paths to source code, containers, etc.)
+  and optionally publishes it to the Manifest platform.
+
+  Generate an API Key in your Manifest account and set it as the MANIFEST_API_KEY environment variable in your CircleCI project settings.
 parameters:
   source:
     type: string
@@ -34,7 +37,7 @@ parameters:
     default: true
   api_key:
     type: string
-    description: "set the API key to use for publishing"
+    description: "set the API key to use for publishing, if not set will use the MANIFEST_API_KEY environment variable"
     default: ""
   attest:
     type: boolean
@@ -59,7 +62,7 @@ steps:
         MANIFEST_GENERATOR: <<parameters.generator>>
         MANIFEST_ARGS: <<parameters.args>>
         MANIFEST_PUBLISH: <<parameters.publish>>
-        MANIFEST_API_KEY: <<parameters.api_key>>
+        MANIFEST_PUBLISH_API_KEY: <<parameters.api_key>>
         MANIFEST_ATTEST: <<parameters.attest>>
         MANIFEST_ATTEST_PRIVATE_KEY: <<parameters.attest_private_key>>
         MANIFEST_HIERARCHICAL_MERGE: <<parameters.hierarchical_merge>>
