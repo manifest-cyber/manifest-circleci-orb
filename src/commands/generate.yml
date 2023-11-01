@@ -31,7 +31,7 @@ parameters:
     type: string
     description: "set the labels to apply to the SBOM, comma separated"
     default: ""
-  args:
+  passthrough_args:
     type: string
     description: "set the arguments to pass to the generator"
     default: ""
@@ -65,7 +65,7 @@ steps:
         MANIFEST_SOURCE_VERSION: <<parameters.source_version>>
         MANIFEST_GENERATOR: <<parameters.generator>>
         MANIFEST_LABELS: <<parameters.labels>>
-        MANIFEST_ARGS: <<parameters.args>>
+        MANIFEST_ARGS: <<parameters.passthrough_args>>
         MANIFEST_PUBLISH: <<parameters.publish>>
         MANIFEST_PUBLISH_API_KEY: <<parameters.api_key>>
         MANIFEST_ATTEST: <<parameters.attest>>
