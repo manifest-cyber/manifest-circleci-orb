@@ -13,11 +13,25 @@ release-filters: &release-filters
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
 jobs:
-  command-test:
+  command-test-syft:
     docker:
       - image: cimg/base:current
     steps:
       - checkout
+      - sbom/install:
+          version: v0.10.0
+          generator: syft
+          generator_version: v0.92.0
+      - sbom/generate:
+          generator: syft
+          source: .
+          source_name: circleci_test
+          source_version: 1.0.0
+          labels: test,circleci,orb
+  command-test-cdxgen:
+    docker:
+      - image: cimg/base:current
+    steps:
       - sbom/install:
           version: v0.10.0
           generator: cdxgen
@@ -29,11 +43,12 @@ jobs:
           source_version: 1.0.0
           labels: test,circleci,orb
           args: "--spec-version 1.4"
-
 workflows:
   test-deploy:
     jobs:
-      - command-test:
+      - command-test-syft:
+          filters: *filters
+      - command-test-cdxgen:
           filters: *filters
       - orb-tools/pack:
           filters: *release-filters
