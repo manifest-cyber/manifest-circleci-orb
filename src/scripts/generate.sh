@@ -12,8 +12,7 @@ attest_key=$(circleci env subst "${MANIFEST_ATTEST_PRIVATE_KEY}")
 hierarchical=$(circleci env subst "${MANIFEST_HIERARCHICAL_MERGE}")
 
 # since we pass "flags", we need to handle this differently
-ptargs=("${MANIFEST_ARGS}")
-ptargs=$(circleci env subst "${ptargs[@]}")
+ptargs="${MANIFEST_ARGS}"
 
 sources=${sources//,/}
 
