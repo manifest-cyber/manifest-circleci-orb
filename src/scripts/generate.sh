@@ -20,9 +20,7 @@ sources=${sources//,/}
 MANFEST_API_KEY=${MANFEST_API_KEY:$(circleci env subst "${MANIFEST_PUBLISH_API_KEY}")}
 
 if [[ -z "${ptargs}" ]]; then
-    echo "NO PASS THROUGH ARGS"
-    manifest sbom --source="CircleCI" --attest="${attest}" --key="${attest_key}" --hierarchical="${hierarchical}" --label="${labels}" --generator="${generator}" --name="${name}" --version="${version}" --output "${format}" --publish="${publish}" "${sources}" "${ptargs}"
+    manifest sbom --source="CircleCI" --attest="${attest}" --key="${attest_key}" --hierarchical="${hierarchical}" --label="${labels}" --generator="${generator}" --name="${name}" --version="${version}" --output "${format}" --publish="${publish}" "${sources}"
 else
-    echo "PASS THROUGH ARGS ${ptargs}"
     manifest sbom --source="CircleCI" --attest="${attest}" --key="${attest_key}" --hierarchical="${hierarchical}" --label="${labels}" --generator="${generator}" --name="${name}" --version="${version}" --output "${format}" --publish="${publish}" "${sources}" -- "${ptargs}"
 fi
