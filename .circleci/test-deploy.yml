@@ -58,6 +58,7 @@ workflows:
           pub_type: production
           requires:
             - orb-tools/pack
-            - command-test
+            - command-test-syft
+            - command-test-cdxgen
           context: <publishing-context>
           filters: *release-filters
