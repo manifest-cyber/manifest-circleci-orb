@@ -30,7 +30,7 @@ jobs:
           labels: test,circleci,orb
   command-test-cdxgen:
     docker:
-      - image: cimg/base:current
+      - image: cimg/node:lts
     steps:
       - sbom/install:
           version: v0.10.0
