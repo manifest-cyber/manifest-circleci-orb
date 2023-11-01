@@ -16,7 +16,7 @@ hierarchical=$(circleci env subst "${MANIFEST_HIERARCHICAL_MERGE}")
 sources=${sources//,/}
 
 if [[ -z "${tptargs}" ]]; then
-    manifest sbom --source="CircleCI" --api-key "${api_key}" --attest="${attest}" --key "${attest_key}" --hierarchical="${hierarchical}" --label "${labels}" --generator "${generator}" --name "${name}" --version "${version}" --output "${format}" --publish="${publish}" "${sources}"
+    manifest sbom --source="CircleCI" --attest="${attest}" --key "${attest_key}" --hierarchical="${hierarchical}" --label "${labels}" --generator "${generator}" --name "${name}" --version "${version}" --output "${format}" --publish="${publish}" "${sources}"
 else
-    manifest sbom --source="CircleCI" --api-key "${api_key}" --attest="${attest}" --key "${attest_key}" --hierarchical="${hierarchical}" --label "${labels}" --generator "${generator}" --name "${name}" --version "${version}" --output "${format}" --publish="${publish}" "${sources}" -- "${ptargs}"
+    manifest sbom --source="CircleCI" --attest="${attest}" --key "${attest_key}" --hierarchical="${hierarchical}" --label "${labels}" --generator "${generator}" --name "${name}" --version "${version}" --output "${format}" --publish="${publish}" "${sources}" -- "${ptargs}"
 fi
