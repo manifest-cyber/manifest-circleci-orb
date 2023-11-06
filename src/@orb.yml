@@ -1,7 +1,7 @@
 version: 2.1
 
 description: >
-  This Orb is used generate a Software Bill of Materials (SBOM) for a project using the Manifest CLI
+  This Orb is used to generate an SBOM and optionally publish to your Manifest account. This Orb uses the Manifest CLI, which wraps various SBOM generators, supports multiple formats, and provides a common interface for generating SBOMs. The Manifest CLI performs further cleanup on generated SBOMs (such as healing relationships & componentIds, asset names & versions, etc), and can also optionally publish your SBOM directly into your Manifest tenant. You do not need to be a Manifest customer to use our Orb for generating SBOMs, but publishing to Manifest requires an active account. Learn more about Manifest at [manifestcyber.com](https://manifestcyber.com).
 
 display:
   home_url: "https://www.manifestcyber.com"
