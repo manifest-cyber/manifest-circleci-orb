@@ -28,6 +28,7 @@ This orb is used to generate an SBOM and publish to your Manifest account. Multi
 
 ## Usage Example
 
+### Generate & Transmit with [CycloneDX/cdxgen](https://github.com/CycloneDX/cdxgen)
 ```yaml
 usage:
   version: 2.1
@@ -42,7 +43,8 @@ usage:
         # Example: Run your normal CI and build steps here
         # Note: A more complete `build` generally results in a better SBOM
         - checkout
-        - run: npm ci
+        - run: npm ci # This is here as an example
+        - run: npm run build # This is here as an example
         # Once your build is complete, install Manifest & dependencies:
         - sbom/install:
             version: v0.10.0 # Version of Manifest CLI to install
@@ -52,7 +54,38 @@ usage:
             generator: cdxgen # Should match the installed generator
             source: .
             output: bom.json # Output filename
-            format: cyclonedx-json # Desired output filename. Must be supported by selected generator
-            source_name: node
-            source_version: 14.17.0
+            format: cyclonedx-json # Desired output format. Must be supported by selected generator
+            source_name: your_app_name
+            source_version: 1.2.3
+```
+
+### Generate & Transmit with [Anchore/Syft](https://github.com/anchore/syft)
+```yaml
+usage:
+  version: 2.1
+  orbs:
+    sbom: manifest/sbom@0.1.0
+
+  jobs:
+    build:
+      docker:
+        - image: cimg/node:lts
+      steps:
+        # Example: Run your normal CI and build steps here
+        # Note: A more complete `build` generally results in a better SBOM
+        - checkout
+        - run: npm ci # This is here as an example
+        - run: npm run build # This is here as an example
+        # Once your build is complete, install Manifest & dependencies:
+        - sbom/install:
+            version: v0.10.0 # Version of Manifest CLI to install
+            generator: syft  # syft, cdxgen, etc.
+            generator_version: v0.9.2 # Syft requires an explicit version be set.
+        - sbom/generate:
+            generator: syft # Should match the installed generator
+            source: .
+            output: bom.json # Output filename
+            format: spdx-json # Output format. Supported formats: https://github.com/anchore/syft#output-formats
+            source_name: your_app_name
+            source_version: 1.2.3
 ```
