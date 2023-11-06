@@ -5,7 +5,9 @@
 
 --->
 
-This orb is used to generate an SBOM and publish to your Manifest account.
+This orb is used to generate an SBOM and publish to your Manifest account. Multiple SBOM generators and formats are supported.
+
+> Note: There is an older Manifest Orb, `sbom-transmitter`, which is considered deprecated. It is still available for use (for now), but we recommend using this Orb instead.
 
 ---
 
@@ -37,18 +39,20 @@ usage:
       docker:
         - image: cimg/node:lts
       steps:
+        # Example: Run your normal CI and build steps here
+        # Note: A more complete `build` generally results in a better SBOM
         - checkout
         - run: npm ci
-        - run: npm run build:bom
+        # Once your build is complete, install Manifest & dependencies:
         - sbom/install:
-            version: v0.10.0
-            generator: cdxgen
-            generator_version: v0.92.0
+            version: v0.10.0 # Version of Manifest CLI to install
+            generator: cdxgen  # syft, cdxgen, etc.
+            # generator_version: v1.2.3 # Install a specific version of the generator (default: latest)
         - sbom/generate:
-            generator: cdxgen
+            generator: cdxgen # Should match the installed generator
             source: .
-            output: bom.json
-            format: cyclonedx-json
+            output: bom.json # Output filename
+            format: cyclonedx-json # Desired output filename. Must be supported by selected generator
             source_name: node
             source_version: 14.17.0
 ```
