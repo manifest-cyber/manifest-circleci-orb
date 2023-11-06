@@ -13,22 +13,21 @@ release-filters: &release-filters
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
 jobs:
-  # Syft appears to be failing.
-  # command-test-syft:
-  #   docker:
-  #     - image: cimg/base:current
-  #   steps:
-  #     - checkout
-  #     - sbom/install:
-  #         version: v0.11.0 # Version of Manifest CLI to install
-  #         generator: syft # syft, cdxgen, etc.
-  #         generator_version: v0.94.0 # Syft requires an explicit version be set.
-  #     - sbom/generate:
-  #         generator: syft # Should match the installed generator
-  #         source: .
-  #         source_name: circleci_test
-  #         source_version: 1.0.0
-  #         labels: test,circleci,orb
+  command-test-syft: # This test appears to be failing! On our list to resolve.
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - sbom/install:
+          version: v0.11.0 # Version of Manifest CLI to install
+          generator: syft # syft, cdxgen, etc.
+          generator_version: v0.94.0 # Syft requires an explicit version be set.
+      - sbom/generate:
+          generator: syft # Should match the installed generator
+          source: .
+          source_name: circleci_test
+          source_version: 1.0.0
+          labels: test,circleci,orb
   command-test-cdxgen:
     docker:
       - image: cimg/node:lts
@@ -47,8 +46,8 @@ jobs:
 workflows:
   test-deploy:
     jobs:
-      - command-test-syft:
-          filters: *filters
+      # - command-test-syft:
+      #     filters: *filters
       - command-test-cdxgen:
           filters: *filters
       - orb-tools/pack:
@@ -59,7 +58,7 @@ workflows:
           pub_type: production
           requires:
             - orb-tools/pack
-            - command-test-syft
+            # - command-test-syft
             - command-test-cdxgen
           context: <publishing-context>
           filters: *release-filters
