@@ -5,7 +5,7 @@
 
 --->
 
-This orb is used to generate an SBOM and publish to your Manifest account. Multiple SBOM generators and formats are supported. This Orb uses the Manifest CLI, which wraps various SBOM generators, supports multiple formats, and provides a common interface for generating SBOMs. The Manifest CLI performs further cleanup on generated SBOMs (such as healing relationships & componentIds, asset names & versions, etc), and can also optionally publish your SBOM directly into your Manifest tenant.
+This Orb is used to generate an SBOM and optionally publish to your Manifest account. This Orb uses the Manifest CLI, which wraps various SBOM generators, supports multiple formats, and provides a common interface for generating SBOMs. The Manifest CLI performs further cleanup on generated SBOMs (such as healing relationships & componentIds, asset names & versions, etc), and can also optionally publish your SBOM directly into your Manifest tenant.
 
 > Note: There is an older Manifest Orb, `sbom-transmitter`, which is considered deprecated. It is still available for use (for now), but we recommend using this Orb instead.
 
@@ -80,7 +80,7 @@ usage:
         - sbom/install:
             version: v0.10.0 # Version of Manifest CLI to install
             generator: syft  # syft, cdxgen, etc.
-            generator_version: v0.9.2 # Syft requires an explicit version be set.
+            generator_version: v0.91.0 # Syft requires an explicit version be set.
         - sbom/generate:
             generator: syft # Should match the installed generator
             source: .

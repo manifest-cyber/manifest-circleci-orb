@@ -15,7 +15,7 @@ parameters:
     description: "cli version to install"
 steps:
   - run:
-      name: Install Manfiest CLI
+      name: Install Manifest CLI
       environment:
         MANIFEST_CLI_VERSION: <<parameters.version>>
         MANIFEST_GENERATOR: <<parameters.generator>>

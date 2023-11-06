@@ -21,7 +21,7 @@ jobs:
       - sbom/install:
           version: v0.10.0 # Version of Manifest CLI to install
           generator: syft # syft, cdxgen, etc.
-          generator_version: v0.9.2 # Syft requires an explicit version be set.
+          generator_version: v0.91.0 # Syft requires an explicit version be set.
       - sbom/generate:
           generator: syft # Should match the installed generator
           source: .
@@ -35,9 +35,9 @@ jobs:
       - sbom/install:
           version: v0.10.0 # Version of Manifest CLI to install
           generator: cdxgen # syft, cdxgen, etc.
+          # generator_version: v1.2.3 # Optionally install a specific version of the generator (default: latest)
       - sbom/generate:
           generator: cdxgen # Should match the installed generator
-          # generator_version: v1.2.3 # Optionally install a specific version of the generator (default: latest)
           source: .
           source_name: circleci_test
           source_version: 1.0.0
