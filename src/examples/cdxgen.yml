@@ -14,13 +14,12 @@ usage:
         - run: npm ci
         - run: npm run build:bom
         - sbom/install:
-            version: v0.10.0
-            generator: cdxgen
-            generator_version: v0.92.0
+            version: v0.11.0
+            generator: cdxgen # syft, cdxgen, etc.
         - sbom/generate:
-            generator: cdxgen
+            generator: cdxgen # Should match the installed generator
             source: .
             output: bom.json
             format: cyclonedx-json
-            source_name: node
-            source_version: 14.17.0
+            source_name: your_app
+            source_version: 1.2.3
