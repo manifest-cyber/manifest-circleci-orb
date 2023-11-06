@@ -14,7 +14,7 @@ usage:
         - run: npm ci
         - run: npm run build:bom
         - sbom/install:
-            version: v0.10.0
+            version: v0.11.0
             generator: cdxgen # syft, cdxgen, etc.
         - sbom/generate:
             generator: cdxgen # Should match the installed generator

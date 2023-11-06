@@ -1,11 +1,13 @@
 # Manifest Cyber Orb
 
-<!---
-[![CircleCI Build Status](https://circleci.com/gh/<organization>/<project-name>.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/<organization>/<project-name>) [![CircleCI Orb Version](https://badges.circleci.com/orbs/<namespace>/<orb-name>.svg)](https://circleci.com/orbs/registry/orb/<namespace>/<orb-name>) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/<organization>/<project-name>/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+[![CircleCI Build Status](https://circleci.com/gh/manifest-cyber/manifest-circleci-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/manifest-cyber/manifest-circleci-orb) 
+[![CircleCI Orb Version](https://badges.circleci.com/orbs/manifest/sbom.svg)](https://circleci.com/orbs/registry/orb/manifest/sbom)
+![GitHub Latest Release)](https://img.shields.io/github/v/release/manifest-cyber/cli?logo=github&label=Manifest%20CLI%20Latest)
 
---->
 
 This Orb is used to generate an SBOM and optionally publish to your Manifest account. This Orb uses the Manifest CLI, which wraps various SBOM generators, supports multiple formats, and provides a common interface for generating SBOMs. The Manifest CLI performs further cleanup on generated SBOMs (such as healing relationships & componentIds, asset names & versions, etc), and can also optionally publish your SBOM directly into your Manifest tenant.
+
+You do not need to be a Manifest customer to use our Orb for generating SBOMs, but publishing to Manifest requires an active account Learn more about Manifest at [manifestcyber.com](https://manifestcyber.com).
 
 > Note: There is an older Manifest Orb, `sbom-transmitter`, which is considered deprecated. It is still available for use (for now), but we recommend using this Orb instead.
 

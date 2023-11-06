@@ -19,7 +19,7 @@ jobs:
     steps:
       - checkout
       - sbom/install:
-          version: v0.10.0 # Version of Manifest CLI to install
+          version: v0.11.0 # Version of Manifest CLI to install
           generator: syft # syft, cdxgen, etc.
           generator_version: v0.91.0 # Syft requires an explicit version be set.
       - sbom/generate:
@@ -33,7 +33,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - sbom/install:
-          version: v0.10.0 # Version of Manifest CLI to install
+          version: v0.11.0 # Version of Manifest CLI to install
           generator: cdxgen # syft, cdxgen, etc.
           # generator_version: v1.2.3 # Optionally install a specific version of the generator (default: latest)
       - sbom/generate:
