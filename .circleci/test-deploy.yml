@@ -46,8 +46,8 @@ jobs:
 workflows:
   test-deploy:
     jobs:
-      # - command-test-syft:
-      #     filters: *filters
+      - command-test-syft:
+          filters: *filters
       - command-test-cdxgen:
           filters: *filters
       - orb-tools/pack:
