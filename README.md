@@ -1,9 +1,8 @@
 # Manifest Cyber Orb
 
-[![CircleCI Build Status](https://circleci.com/gh/manifest-cyber/manifest-circleci-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/manifest-cyber/manifest-circleci-orb) 
+[![CircleCI Build Status](https://circleci.com/gh/manifest-cyber/manifest-circleci-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/manifest-cyber/manifest-circleci-orb)
 [![CircleCI Orb Version](https://badges.circleci.com/orbs/manifest/sbom.svg)](https://circleci.com/orbs/registry/orb/manifest/sbom)
 ![GitHub Latest Release)](https://img.shields.io/github/v/release/manifest-cyber/cli?logo=github&label=Manifest%20CLI%20Latest)
-
 
 This Orb is used to generate an SBOM and optionally publish to your Manifest account. This Orb uses the Manifest CLI, which wraps various SBOM generators, supports multiple formats, and provides a common interface for generating SBOMs. The Manifest CLI performs further cleanup on generated SBOMs (such as healing relationships & componentIds, asset names & versions, etc), and can also optionally publish your SBOM directly into your Manifest tenant.
 
@@ -31,6 +30,7 @@ You do not need to be a Manifest customer to use our Orb for generating SBOMs, b
 ## Usage Example
 
 ### Generate & Transmit with [CycloneDX/cdxgen](https://github.com/CycloneDX/cdxgen)
+
 ```yaml
 usage:
   version: 2.1
@@ -49,8 +49,8 @@ usage:
         - run: npm run build # This is here as an example
         # Once your build is complete, install Manifest & dependencies:
         - sbom/install:
-            version: v0.10.0 # Version of Manifest CLI to install
-            generator: cdxgen  # syft, cdxgen, etc.
+            version: v0.11.0 # Version of Manifest CLI to install
+            generator: cdxgen # syft, cdxgen, etc.
             # generator_version: v1.2.3 # Install a specific version of the generator (default: latest)
         - sbom/generate:
             generator: cdxgen # Should match the installed generator
@@ -62,6 +62,7 @@ usage:
 ```
 
 ### Generate & Transmit with [Anchore/Syft](https://github.com/anchore/syft)
+
 ```yaml
 usage:
   version: 2.1
@@ -80,9 +81,9 @@ usage:
         - run: npm run build # This is here as an example
         # Once your build is complete, install Manifest & dependencies:
         - sbom/install:
-            version: v0.10.0 # Version of Manifest CLI to install
-            generator: syft  # syft, cdxgen, etc.
-            generator_version: v0.91.0 # Syft requires an explicit version be set.
+            version: v0.11.0 # Version of Manifest CLI to install
+            generator: syft # syft, cdxgen, etc.
+            generator_version: v0.92.0 # Syft requires an explicit version be set.
         - sbom/generate:
             generator: syft # Should match the installed generator
             source: .
