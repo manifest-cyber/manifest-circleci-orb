@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  orb-tools: circleci/orb-tools@12.0
+  orb-tools: circleci/orb-tools@12.5
 
 filters: &filters
   tags:
